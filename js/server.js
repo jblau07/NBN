@@ -27,6 +27,7 @@ const server = net.createServer((socket) => {
 server.on('error', (err) => {
   throw err;
 });
+
 server.listen(6969, '0.0.0.0', () => {
   console.log('server bound');
 });

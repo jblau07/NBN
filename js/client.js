@@ -7,7 +7,7 @@ client.connect(6969, '0.0.0.0', function () {
 });
 
 client.on('end', () => {
-  console.log('Disconnected from server')
+  console.log('Disconnected from server');
 
 });
 
