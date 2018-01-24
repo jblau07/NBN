@@ -7,20 +7,43 @@ const server = net.createServer((socket) => {
   socket.on('end', () => {
     console.log('Client disconnected');
   });
-  socket.write('You are connected\r\n');
-  connections.push(socket);
+//   socket.write('You are connected\r\n');
+//   socket.userList = {};
+// if(socket.userList.userName === undefined){
+//   socket.write('Please enter a username');
+//   socket.userList.userName = `${chunk}`
+// }
+  
+//socket.write('Please enter a username');
+socket.write('You are connected\r\n');
+connections.push(socket);
 
-  socket.on('data', (chunk) => {
-    socket.setEncoding('utf8');
-    console.log(chunk.toString('utf8'));
+socket.userList = {};
+
+if (socket.userList.name === undefined){
+  socket.write('Please enter a username');
+}
+//connections.DATATA
+
+socket.on('data', (chunk) => {
+
+  let chunkStr = chunk.toString('utf8');
+
+if (socket.userList.name === undefined){
+socket.userList.name = chunkStr.trim();
+console.log(socket.userList.name);
+  }else{
+    let userName = socket.userList.name;
+  
+console.log(chunkStr);
 
     connections.filter(element => {
         return element !== socket;
       })
       .forEach(element => {
-        element.setEncoding('utf8');
-        element.write(chunk)
-      })
+        element.write(`${userName} ${chunk}`);
+      });
+    };
   });
 })
 
